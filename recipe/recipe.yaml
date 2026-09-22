@@ -1,21 +1,20 @@
 schema_version: 1
 
 context:
-  name: awxkit
   version: "24.6.1"
 
 package:
-  name: ${{ name|lower }}
+  name: awxkit
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/awxkit-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/a/awxkit/awxkit-${{ version }}.tar.gz
   sha256: 015421c2c525c5c5dd13890624f453ac3fc7ca2bc3e301b82db871bc4b8da23c
 
 build:
   number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
     entry_points:
       - akit=awxkit.scripts.basic_session:load_interactive
